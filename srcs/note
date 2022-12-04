@@ -1,1 +1,43 @@
-docker exec -it ng bash   
+Data:
+	Volumes;
+	Bind Mounting;
+
+Volumes:are stored in part of the host filesystem which is managed by Docker.
+	Non-Docker processes should not modify this part of the filesystem.
+	Volumes ars the best way to persist data in Docker.
+	a given Volume can be mounted into multiple containers simultaneously
+Bind Mounting:may be stored anywhere on the host system
+	Non-Docker processes on the Docker host or Docker container can modify this part of the filesystem.
+	To use bind Mounts, the file or directory does not need to esist on your Docker host already. if it doesn't exist, it will be created on demand.
+
+
+---------Docker networking--------------------
+Bridge network :default
+HOST Disables Docker's network isolation
+None does not attach containers to any network.
+Overlay
+Macvlan
+
+	Docker network create --drive bridge <network_name>
+	Docker network create --drive bridge --subnet <subnet> <network_name>
+	Docker run --network=<network_name> -d -it <container>
+	docker network disconnect <network_name> <container>
+	docker network connect <network_name> <container>
+
+MARIADB
+	mysql -u root -p
+
+
+
+172.18.0.2
+
+
+
+docker exec -it <name_of_container> bash   
+--------------install openssl-----------------------------------------
+sudo apt-get update
+sudo apt-get -y install openssl
+--------------Step 1 — Creating the SSL Certificate:------------------
+https://www.digitalocean.com/community/tutorials/how-to-create-a-self-signed-ssl-certificate-for-nginx-on-debian-10
+
+sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/nginx-selfsigned.key -out /etc/ssl/certs/nginx-selfsigned.crt   -subj "/C=MA/ST=St/L=Lo/O=in/OU=or/CN=Co"

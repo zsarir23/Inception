@@ -1,9 +1,13 @@
 FROM debian:buster
 
-RUN apt update
-RUN apt install nginx -y
+RUN apt update && apt install nginx -y \
+	&& apt-get install -y openssl vim
+
+COPY nginx_config.sh /tmp/
+
+RUN chmod +x /nginx_config.sh
+RUN /bin/bash /tmp/nginx_config.sh
 
 EXPOSE 443
 
 CMD ["nginx", "-g", "daemon off;"]
-# CMD tail -f
