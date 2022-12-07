@@ -1,32 +1,60 @@
 version: '3'
 services:
+
     mariadb:
-      build: /Users/zsarir/Desktop/Inception/srcs/requirements/mariadb
-      restart: always #containers have to restart in case of a crash.
-      environment:
-        MYSQL_ROOT_PASSWORD: 1234
-        MYSQL_USER: zsarir
-        MYSQL_PASSWORD: 1234
+      build: 
+        context: /Users/zsarir/Desktop/Inception/srcs/requirements/mariadb
+        args:
+          MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
+          MYSQL_USER: $MYSQL_USER
+          MYSQL_PASSWORD: $MYSQL_PASSWORD
+      image: mariadb
+      container_name: mariadb
+      env_file: .env
       volumes:
         - db:/var/lib/mysql
-      ports:
-        - 3306:3306
-      # network: mynet
+      restart: always #containers have to restart in case of a crash.
+      networks: 
+      - mynet
 
-    # wordpress:
-    #   depends_on:
-    #     - mariadb
-    #   image: wordpress
-    #   restart: always
-    #   ports: 
-    #     - "8080:80"
-    #   environment:
-    #     WORDPRESS_DB_HOST: mariadb:3360
-    #     WORDPRESS_DB_USER: wp_user
-    #     WORDPRESS_DB_PASSWORD: 1234
-    #     WORDPRESS_DB_NAME: wp_db
-    #   volumes:
-    #   - WordPress:/var/www/html
+    wordpress:
+      build: 
+       context: /Users/zsarir/Desktop/Inception/srcs/requirements/wordpress
+       args:
+           MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
+           MYSQL_USER: $MYSQL_USER
+           MYSQL_PASSWORD: $MYSQL_PASSWORD
+           ADMIN_USER: $ADMIN_USER
+           ADMIN_PASSWORD: $ADMIN_PASSWORD
+      image: wordpress
+      container_name: wordpress
+      restart: always
+      depends_on:
+      - mariadb
+      volumes:
+      - wordpress:/var/www/html
+      env_file: .env
+      networks: 
+      - mynet
+
+    nginix:
+      build:
+        context: /Users/zsarir/Desktop/Inception/srcs/requirements/nginx
+      image: nginix
+      container_name: nginix
+      ports:
+      - 443:443
+      volumes:
+      - wordpress:/var/www/html
+      restart: always
+      networks: 
+      - mynet
+
 volumes:
   db:
+  wordpress:
+
+networks:
+  mynet:
+    driver: bridge
 

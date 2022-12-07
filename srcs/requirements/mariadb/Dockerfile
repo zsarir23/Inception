@@ -1,11 +1,13 @@
 FROM debian:buster
 
-ARG MYSQL_ROOT_PASSWORD=1234
-ARG MYSQL_USER=zsarir
-ARG MYSQL_PASSWORD=1234
+ARG MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD
+ARG MYSQL_USER=$MYSQL_USER
+ARG MYSQL_PASSWORD=$MYSQL_PASSWORD
 
 RUN apt update
 RUN apt install mariadb-server -y
+
+WORKDIR /etc/mysql/mariadb.conf.d
 
 COPY ./creat_user.sh /etc/mysql
 
