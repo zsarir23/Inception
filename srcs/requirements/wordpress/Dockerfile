@@ -10,9 +10,7 @@ RUN apt update
 RUN apt-get install php-fpm php-mysql vim curl -y
 WORKDIR /var/www/html
 COPY ./wordpress_config.sh /tmp/
-RUN chmod +x /tmp/wordpress_config.sh
-RUN /bin/bash /tmp/wordpress_config.sh
 
 EXPOSE 9000
 
-CMD tail -f
+ENTRYPOINT [ "/bin/bash", "/tmp/wordpress_config.sh" ]

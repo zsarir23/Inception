@@ -47,6 +47,8 @@ services:
       volumes:
       - wordpress:/var/www/html
       restart: always
+      depends_on:
+      - wordpress
       networks: 
       - mynet
 
