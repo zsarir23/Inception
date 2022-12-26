@@ -16,5 +16,3 @@ RUN service mysql start && /bin/sh /etc/mysql/creat_user.sh
 EXPOSE 3306
 
 CMD [ "mysqld_safe" ]
-
-# RUN tail -f 

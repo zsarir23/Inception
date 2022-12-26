@@ -20,3 +20,4 @@ wp theme install ultrabootstrap --activate --allow-root
 
 mkdir -p /run/php/
 php-fpm7.3 -F
+
