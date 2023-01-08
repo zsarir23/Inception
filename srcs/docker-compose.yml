@@ -13,7 +13,7 @@ services:
       env_file: .env
       volumes:
         - db:/var/lib/mysql
-      restart: always #containers have to restart in case of a crash.
+      restart: always
       networks: 
       - mynet
 
@@ -54,7 +54,15 @@ services:
 
 volumes:
   db:
+    driver_opt:
+      type: none
+      o: bind
+      device: /home/login/data/db
   wordpress:
+    driver_opt:
+      type: none
+      o: bind
+      device: /home/login/data/wordpress
 
 networks:
   mynet:
