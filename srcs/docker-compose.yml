@@ -3,7 +3,7 @@ services:
 
     mariadb:
       build: 
-        context: /Users/zsarir/Desktop/Inception/srcs/requirements/mariadb
+        context: /home/zsarir/Desktop/Inception/srcs/requirements/mariadb
         args:
           MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
           MYSQL_USER: $MYSQL_USER
@@ -19,7 +19,7 @@ services:
 
     wordpress:
       build: 
-       context: /Users/zsarir/Desktop/Inception/srcs/requirements/wordpress
+       context: /home/zsarir/Desktop/Inception/srcs/requirements/wordpress
        args:
            MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
            MYSQL_USER: $MYSQL_USER
@@ -39,7 +39,7 @@ services:
 
     nginix:
       build:
-        context: /Users/zsarir/Desktop/Inception/srcs/requirements/nginx
+        context: /home/zsarir/Desktop/Inception/srcs/requirements/nginx
       image: nginix
       container_name: nginix
       ports:
@@ -54,15 +54,15 @@ services:
 
 volumes:
   db:
-    driver_opt:
+    driver_opts:
       type: none
       o: bind
-      device: /home/login/data/db
+      device: /home/zsarir/data/db
   wordpress:
-    driver_opt:
+    driver_opts:
       type: none
       o: bind
-      device: /home/login/data/wordpress
+      device: /home/zsarir/data/wordpress
 
 networks:
   mynet:

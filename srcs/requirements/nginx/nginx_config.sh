@@ -18,7 +18,7 @@ sed -i '28i		ssl_protocols TLSv1.3;' 																						/etc/nginx/sites-enab
 
 		###wordpress:
 sed -i "s/index index.html index.htm index.nginx-debian.html;/index index.php index.html index.htm index.nginx-debian.html;/"	/etc/nginx/sites-enabled/default
-sed -i "s/server_name _;/server_name localhost;/" 																				/etc/nginx/sites-enabled/default
+sed -i "s/server_name _;/server_name zsarir.42.fr;/" 																				/etc/nginx/sites-enabled/default
 sed -i "57i location ~ \\.php$ {" 																								/etc/nginx/sites-enabled/default
 sed -i "58i      include snippets/fastcgi-php.conf;" 																			/etc/nginx/sites-enabled/default
 sed -i "59i       fastcgi_pass wordpress:9000;" 																				/etc/nginx/sites-enabled/default

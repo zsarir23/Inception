@@ -12,9 +12,9 @@ wp --allow-root core download
 
 wp core config --dbname=myDB --dbuser=$MYSQL_USER --dbpass=$MYSQL_PASSWORD --dbhost=mariadb --dbprefix=wp_ --allow-root --skip-check
 
-wp --allow-root  core install --url="https://zsarir.42.fr" --title="My Site" --admin_user="$ADMIN_USER" --admin_password="$ADMIN_PASSWORD" --admin_email="zsarir@gmail.com"
+wp --allow-root  core install --url="https://zsarir.42.fr" --title="My Site" --admin_user="$ADMIN_USER" --admin_password="$ADMIN_PASSWORD" --admin_email="zsarir@email.com"
 
-# wp theme activate twentyfifteen --allow-root
+wp theme activate twentyfifteen --allow-root
 wp theme install ultrabootstrap --activate --allow-root
 
 mkdir -p /run/php/
