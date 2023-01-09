@@ -13,7 +13,7 @@ echo "GRANT ALL PRIVILEGES ON myDB.* TO '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_
 
 echo "FLUSH PRIVILEGES;" | mysql -u root
 
-echo "ALTER  USER 'root'@'%' IDENTIFIED BY '$MYSQL_ROOT_PASSWORD';" | mysql -u root
+echo "ALTER  USER 'root'@'localhost' IDENTIFIED BY '$MYSQL_ROOT_PASSWORD';" | mysql -u root
 
 echo "FLUSH PRIVILEGES;" | mysql -u root -p$MYSQL_ROOT_PASSWORD
 

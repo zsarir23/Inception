@@ -52,6 +52,19 @@ services:
       networks: 
       - mynet
 
+    adminer:
+      build:
+        context: /home/zsarir/Desktop/Inception/srcs/requirements/bonus/adminer
+      image: adminer
+      container_name: adminer
+      ports:
+      - 8080:8080
+      restart: always
+      depends_on:
+      - mariadb
+      networks: 
+      - mynet
+
 volumes:
   db:
     driver_opts:
