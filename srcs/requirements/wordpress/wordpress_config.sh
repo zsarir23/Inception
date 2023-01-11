@@ -1,5 +1,7 @@
 #!/bin/sh
 
+mkdir -p /run/php/
+
 curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 
 chmod +x wp-cli.phar
@@ -16,7 +18,12 @@ wp --allow-root  core install --url="https://zsarir.42.fr" --title="My Site" --a
 
 # wp theme activate twentyfifteen --allow-root
 wp theme install ultrabootstrap --activate --allow-root
+############################################################
+wp --allow-root plugin install redis-cache --activate
+wp config --allow-root set WP_REDIS_PORT 6000
+wp config --allow-root set WP_REDIS_HOST redis
 
-mkdir -p /run/php/
+wp --allow-root redis enable
+############################################################
 php-fpm7.3 -F
 

@@ -3,7 +3,7 @@ services:
 
     mariadb:
       build: 
-        context: /home/zsarir/Desktop/Inception/srcs/requirements/mariadb
+        context: /Users/zsarir/Desktop/Inception/srcs/requirements/mariadb
         args:
           MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
           MYSQL_USER: $MYSQL_USER
@@ -19,7 +19,7 @@ services:
 
     wordpress:
       build: 
-       context: /home/zsarir/Desktop/Inception/srcs/requirements/wordpress
+       context: /Users/zsarir/Desktop/Inception/srcs/requirements/wordpress
        args:
            MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
            MYSQL_USER: $MYSQL_USER
@@ -39,7 +39,7 @@ services:
 
     nginix:
       build:
-        context: /home/zsarir/Desktop/Inception/srcs/requirements/nginx
+        context: /Users/zsarir/Desktop/Inception/srcs/requirements/nginx
       image: nginix
       container_name: nginix
       ports:
@@ -54,7 +54,7 @@ services:
 
     adminer:
       build:
-        context: /home/zsarir/Desktop/Inception/srcs/requirements/bonus/adminer
+        context: /Users/zsarir/Desktop/Inception/srcs/requirements/bonus/adminer
       image: adminer
       container_name: adminer
       ports:
@@ -64,18 +64,38 @@ services:
       - mariadb
       networks: 
       - mynet
+ 
+    redis:
+      build:
+        context: /Users/zsarir/Desktop/Inception/srcs/requirements/bonus/redis
+      image: redis
+      container_name: redis
+      restart: always
+      networks: 
+      - mynet
+
+    website:
+      build:
+        context: /Users/zsarir/Desktop/Inception/srcs/requirements/bonus/website
+      image: website
+      container_name: website
+      restart: always
+      networks: 
+      - mynet
+
+
 
 volumes:
   db:
-    driver_opts:
-      type: none
-      o: bind
-      device: /home/zsarir/data/db
+    # driver_opts:
+    #   type: none
+    #   o: bind
+    #   device: /home/zsarir/data/db
   wordpress:
-    driver_opts:
-      type: none
-      o: bind
-      device: /home/zsarir/data/wordpress
+    # driver_opts:
+      # type: none
+      # o: bind
+      # device: /home/zsarir/data/wordpress
 
 networks:
   mynet:
