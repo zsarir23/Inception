@@ -83,6 +83,18 @@ services:
       networks: 
       - mynet
 
+    ftp_server:
+      build:
+        context: /Users/zsarir/Desktop/Inception/srcs/requirements/bonus/ftp_server
+      image: ftp_server
+      container_name: ftp_server
+      restart: always
+      depends_on:
+      - wordpress
+      volumes:
+      - wordpress:/var/www/html
+      networks: 
+      - mynet
 
 
 volumes:
