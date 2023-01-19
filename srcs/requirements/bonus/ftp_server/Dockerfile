@@ -4,7 +4,7 @@ RUN apt update && apt upgrade -y
 
 RUN apt install vsftpd -y
 
-EXPOSE 20
+EXPOSE 20 21 10000-10100
 
 COPY ./ftp_config.sh /tmp/
 

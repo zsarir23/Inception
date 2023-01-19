@@ -79,6 +79,8 @@ services:
         context: /Users/zsarir/Desktop/Inception/srcs/requirements/bonus/website
       image: website
       container_name: website
+      ports:
+      - "80:80"
       restart: always
       networks: 
       - mynet
@@ -89,6 +91,10 @@ services:
       image: ftp_server
       container_name: ftp_server
       restart: always
+      ports:
+      - "20:20"
+      - "21:21"
+      - "10000-10100:10000-10100"
       depends_on:
       - wordpress
       volumes:
