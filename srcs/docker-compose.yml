@@ -3,7 +3,7 @@ services:
 
     mariadb:
       build: 
-        context: /Users/zsarir/Desktop/Inception/srcs/requirements/mariadb
+        context: /home/zsarir/Desktop/Inception/srcs/requirements/mariadb
         args:
           MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
           MYSQL_USER: $MYSQL_USER
@@ -19,7 +19,7 @@ services:
 
     wordpress:
       build: 
-       context: /Users/zsarir/Desktop/Inception/srcs/requirements/wordpress
+       context: /home/zsarir/Desktop/Inception/srcs/requirements/wordpress
        args:
            MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
            MYSQL_USER: $MYSQL_USER
@@ -39,7 +39,7 @@ services:
 
     nginix:
       build:
-        context: /Users/zsarir/Desktop/Inception/srcs/requirements/nginx
+        context: /home/zsarir/Desktop/Inception/srcs/requirements/nginx
       image: nginix
       container_name: nginix
       ports:
@@ -54,7 +54,7 @@ services:
 
     adminer:
       build:
-        context: /Users/zsarir/Desktop/Inception/srcs/requirements/bonus/adminer
+        context: /home/zsarir/Desktop/Inception/srcs/requirements/bonus/adminer
       image: adminer
       container_name: adminer
       ports:
@@ -67,7 +67,7 @@ services:
  
     redis:
       build:
-        context: /Users/zsarir/Desktop/Inception/srcs/requirements/bonus/redis
+        context: /home/zsarir/Desktop/Inception/srcs/requirements/bonus/redis
       image: redis
       container_name: redis
       restart: always
@@ -76,7 +76,7 @@ services:
 
     website:
       build:
-        context: /Users/zsarir/Desktop/Inception/srcs/requirements/bonus/website
+        context: /home/zsarir/Desktop/Inception/srcs/requirements/bonus/website
       image: website
       container_name: website
       ports:
@@ -87,7 +87,7 @@ services:
 
     ftp_server:
       build:
-        context: /Users/zsarir/Desktop/Inception/srcs/requirements/bonus/ftp_server
+        context: /home/zsarir/Desktop/Inception/srcs/requirements/bonus/ftp_server
       image: ftp_server
       container_name: ftp_server
       restart: always
@@ -102,18 +102,34 @@ services:
       networks: 
       - mynet
 
+    cadvisor:
+      build: ./requirements/bonus/cadvisor
+      container_name: cadvisor
+      image: cadvisor
+      restart: always
+      ports:
+        - 2000:2000
+      volumes:
+        - "/:/rootfs:ro"
+        - "/var/run:/var/run:ro"
+        - "/sys:/sys:ro"
+        - "/var/lib/docker/:/var/lib/docker:ro"
+      networks:
+        - mynet
+
+
 
 volumes:
   db:
-    # driver_opts:
-    #   type: none
-    #   o: bind
-    #   device: /home/zsarir/data/db
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/zsarir/data/db
   wordpress:
-    # driver_opts:
-      # type: none
-      # o: bind
-      # device: /home/zsarir/data/wordpress
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/zsarir/data/wordpress
 
 networks:
   mynet:
