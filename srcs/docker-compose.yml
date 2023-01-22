@@ -111,7 +111,7 @@ services:
         - 2000:2000
       volumes:
         - "/:/rootfs:ro"
-        - "/var/run:/var/run:ro"
+        - "/var/run:/var/run:rw"
         - "/sys:/sys:ro"
         - "/var/lib/docker/:/var/lib/docker:ro"
       networks:
