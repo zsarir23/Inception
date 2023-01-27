@@ -9,9 +9,9 @@ RUN apt install mariadb-server -y
 
 WORKDIR /etc/mysql/mariadb.conf.d
 
-COPY ./creat_user.sh /etc/mysql
+COPY ./mariadb_config.sh /etc/mysql
 
-RUN service mysql start && /bin/sh /etc/mysql/creat_user.sh
+RUN service mysql start && /bin/sh /etc/mysql/mariadb_config.sh
 
 EXPOSE 3306
 

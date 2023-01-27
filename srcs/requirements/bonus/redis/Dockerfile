@@ -7,6 +7,6 @@ COPY ./redis_cache.sh /tmp/
 
 RUN /bin/bash /tmp/redis_cache.sh
 
-EXPOSE 6000
+EXPOSE 6379
 
 CMD ["redis-server", "--protected-mode", "no"]
