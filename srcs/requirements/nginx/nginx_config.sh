@@ -23,6 +23,3 @@ sed -i "57i location ~ \\.php$ {" 																								/etc/nginx/sites-enabl
 sed -i "58i      include snippets/fastcgi-php.conf;" 																			/etc/nginx/sites-enabled/default
 sed -i "59i       fastcgi_pass wordpress:9000;" 																				/etc/nginx/sites-enabled/default
 sed -i '60i		}' 																												/etc/nginx/sites-enabled/default
-
-# nginx -t
-# service nginx reload

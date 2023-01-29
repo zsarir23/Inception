@@ -21,7 +21,6 @@ services:
       build: 
        context: /home/zsarir/Desktop/Inception/srcs/requirements/wordpress
        args:
-           MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
            MYSQL_USER: $MYSQL_USER
            MYSQL_PASSWORD: $MYSQL_PASSWORD
            ADMIN_USER: $ADMIN_USER
@@ -98,7 +97,7 @@ services:
       depends_on:
       - wordpress
       volumes:
-      - wordpress:/var/www/html
+      - wordpress:/home/zsarir
       networks: 
       - mynet
 
