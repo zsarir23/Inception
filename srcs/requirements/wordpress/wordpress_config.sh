@@ -18,11 +18,15 @@ wp --allow-root  core install --url="https://zsarir.42.fr" --title="My Site" --a
 
 wp theme install ultrabootstrap --activate --allow-root
 
-########################--redis--###########################
+groupadd www-pub 
+usermod -a -G www-pub www-data
+########################--redis--###############################
 wp --allow-root plugin install redis-cache --activate
 wp config --allow-root set WP_REDIS_PORT 6379
 wp config --allow-root set WP_REDIS_HOST redis
 wp --allow-root redis enable
-chown -R www-data:www-data /var/www/html
-############################################################
+chown -R www-data:www-pub /var/www/
+chmod 2775 /var/www 
+################################################################
+
 php-fpm7.3 -F
