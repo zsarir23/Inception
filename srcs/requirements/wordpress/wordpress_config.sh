@@ -17,10 +17,12 @@ wp core config --dbname=myDB --dbuser=$MYSQL_USER --dbpass=$MYSQL_PASSWORD --dbh
 wp --allow-root  core install --url="https://zsarir.42.fr" --title="My Site" --admin_user="$ADMIN_USER" --admin_password="$ADMIN_PASSWORD" --admin_email="zsarir@email.com"
 
 wp theme install ultrabootstrap --activate --allow-root
+
 ########################--redis--###########################
 wp --allow-root plugin install redis-cache --activate
 wp config --allow-root set WP_REDIS_PORT 6379
 wp config --allow-root set WP_REDIS_HOST redis
 wp --allow-root redis enable
+chown -R www-data:www-data /var/www/html
 ############################################################
 php-fpm7.3 -F

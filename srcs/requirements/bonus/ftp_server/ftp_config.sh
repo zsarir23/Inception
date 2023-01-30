@@ -15,11 +15,12 @@ sed -i "s/secure_chroot_dir=\/var\/run\/vsftpd\/empty/secure_chroot_dir=\/home\/
 echo "zsarir"  >	/etc/vsftpd.chroot_list
 
 mkdir /home/zsarir/
+mkdir /home/files
 
 useradd zsarir
 
 echo -e "1234\n1234" | passwd zsarir
-
-chown zsarir:zsarir /home/zsarir
+chown -R zsarir:zsarir /home/files
 
 chmod 775 /home/zsarir
+chmod 775 /home/files
